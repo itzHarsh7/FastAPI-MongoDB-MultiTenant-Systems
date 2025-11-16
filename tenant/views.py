@@ -34,13 +34,9 @@ async def register_tenant(request: Request, register_data: TenantRegisterData,  
                 "host": register_data.host,
                 "profile": None,
                 "is_active": True})
-        print(f"Tenant '{register_data.organisation}' created with ID: {tenant.inserted_id}")
         role = await db.roles.find_one({"name":"Tenant"})
-        print(role)
         password = await generate_random_password()
         username = await generate_unique_username(first_name=register_data.first_name, last_name=register_data.last_name)
-        print('role["_id"]', role["_id"])
-        print('tenant["_id"]', tenant.inserted_id)
         user = await db.users.insert_one({
                 "first_name": register_data.first_name,
                 "last_name": register_data.last_name,

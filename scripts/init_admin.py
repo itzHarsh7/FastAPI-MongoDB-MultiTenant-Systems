@@ -1,8 +1,9 @@
-# scripts/init_db.py
 import asyncio
-from database import db  # your motor client
+from database import db
 from authentication.utils import get_password_hash
 from datetime import datetime, UTC
+
+
 async def create_default_admin():
     user_collection = db["users"]
     tenants_collection = db["tenants"]
